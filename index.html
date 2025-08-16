@@ -108,6 +108,8 @@
     const modeSwitch = document.getElementById("mode");
     let isRegisterMode = false;
 
+    localStorage.clear();
+
     modeSwitch.addEventListener("click", (e) => {
       if (!isRegisterMode) {
         isRegisterMode = true;
