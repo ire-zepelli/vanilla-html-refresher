@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>chin</title>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="https://ch1n.vercel.app/assets/logo--3pTYo2r.png"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <style>
+    * {
+      font-family: "Bubblegum Sans", sans-serif;
+    }
+    .mode-switch {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  </style>
+
+  <body
+    class="bg-[rgb(232,188,135)] text-[#793205] flex flex-col items-center justify-center h-screen"
+    id="body"
+  >
+    <div
+      id="login-modal"
+      class="flex flex-col items-center bg-white w-[20rem] p-10 rounded-xl"
+    >
+      <img
+        id="logo"
+        src="https://ch1n.vercel.app/assets/logo--3pTYo2r.png"
+        alt=""
+      />
+      <h1 class="font-black text-xl" id="form-title">LOGIN</h1>
+      <form
+        id="auth-form"
+        class="w-full flex flex-col items-start justify-start gap-2"
+      >
+        <div class="flex flex-col w-full">
+          <label for="username">Username</label>
+          <input type="text" id="username" class="border border-[#793205]" />
+        </div>
+        <div class="flex flex-col w-full">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            class="border border-[#793205]"
+          />
+        </div>
+        <!-- <div class="flex flex-col w-full">
+          <label for="username">Username:</label>
+          <input type="text" id="username" class="border border-[#793205]" />
+        </div>
+        <div class="flex flex-col w-full">
+          <label for="password">Password:</label>
+          <input type="text" id="password" class="border border-[#793205]" />
+        </div>
+        <div class="flex">
+          <div>
+            <label for="age">Age:</label>
+            <input
+              type="number"
+              id="age"
+              class="border border-[#793205] w-10"
+            />
+          </div>
+          <div class="flex">
+            <label for="sex" class="ml-5 mr-2">Sex: </label>
+            <input type="radio" id="male" name="sex" value="male" />
+            <label for="male">Male</label>
+            <input type="radio" id="female" name="sex" value="female" />
+            <label for="female">Female</label>
+          </div>
+        </div>
+        <div class="flex flex-col w-full">
+          <label for="username">Enter a secret:</label>
+          <input type="text" id="username" class="border border-[#793205]" />
+        </div>
+        -->
+        <button
+          type="submit"
+          class="bg-black px-5 py-1 rounded-lg self-center mt-2 text-white"
+        >
+          Login
+        </button>
+      </form>
+
+      <p id="mode" class="mt-3 mode-switch">I dont have an account yet.</p>
+    </div>
+  </body>
+
+  <script>
+    const body = document.getElementById("body");
+    const form = document.getElementById("auth-form");
+    const formTitle = document.getElementById("form-title");
+    const modeSwitch = document.getElementById("mode");
+    let isRegisterMode = false;
+
+    modeSwitch.addEventListener("click", (e) => {
+      if (!isRegisterMode) {
+        isRegisterMode = true;
+        formTitle.textContent = "REGISTER";
+        form.innerHTML = `<div class="flex flex-col w-full">
+          <label for="username">Username:</label>
+          <input type="text" id="username" class="border border-[#793205]" />
+        </div>
+        <div class="flex flex-col w-full">
+          <label for="password">Password:</label>
+          <input type="password" id="password" class="border border-[#793205]" />
+        </div>
+        <div class="flex">
+          <div>
+            <label for="age">Age:</label>
+            <input
+              type="number"
+              id="age"
+              class="border border-[#793205] w-10"
+            />
+          </div>
+          <div class="flex">
+            <label for="sex" class="ml-5 mr-2">Sex: </label>
+            <input type="radio" id="male" name="sex" value="male" />
+            <label for="male">Male</label>
+            <input type="radio" id="female" name="sex" value="female" />
+            <label for="female">Female</label>
+          </div>
+        </div>
+        <div class="flex flex-col w-full">
+          <label for="secret">Enter a secret:</label>
+          <input type="text" id="secret" class="border border-[#793205]" />
+        </div>
+        <button
+          type="submit"
+          class="bg-black px-5 py-1 rounded-lg self-center mt-2 text-white"
+        >
+          Register
+        </button>`;
+        modeSwitch.textContent = "Back to Login";
+      } else {
+        isRegisterMode = false;
+        formTitle.textContent = "LOGIN";
+        form.innerHTML = `<div class="flex flex-col w-full">
+          <label for="username">Username</label>
+          <input type="text" id="username" class="border border-[#793205]" />
+        </div>
+        <div class="flex flex-col w-full">
+          <label for="password">Password</label>
+          <input type="password" id="password" class="border border-[#793205]" />
+        </div>
+        <button
+          type="submit"
+          class="bg-black px-5 py-1 rounded-lg self-center mt-2 text-white"
+        >
+          Login
+        </button>`;
+        modeSwitch.textContent = "I dont have an account yet.";
+      }
+    });
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      if (isRegisterMode) {
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+        const age = document.getElementById("age").value;
+        const secret = document.getElementById("secret").value;
+        const sex =
+          document.querySelector('input[name="sex"]:checked')?.value || null;
+
+        const userData = { username, password, age, secret, sex };
+
+        alert("User registered");
+        console.log(userData);
+
+        localStorage.setItem("user", JSON.stringify(userData));
+
+        modeSwitch.click();
+        return;
+      }
+
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      console.log("Logging in:", { username, password });
+
+      const storedUser = JSON.parse(localStorage.getItem("user"));
+
+      if (
+        storedUser &&
+        storedUser.username === username &&
+        storedUser.password === password
+      ) {
+        alert("Login successful!");
+        body.innerHTML = `<h1 class="text-7xl text-center">Hello ${
+          storedUser.sex == "male" ? "Mr." : "Ms."
+        } ${storedUser.username}! 👋 <br> You're ${
+          storedUser.age
+        } years old. 👴 <br> Secret: "${storedUser.secret}". 🤫 </h1>`;
+      } else {
+        alert("Invalid credentials");
+      }
+    });
+  </script>
+</html>
