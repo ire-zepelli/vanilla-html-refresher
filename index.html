@@ -30,7 +30,7 @@
   </style>
 
   <body
-    class="bg-[rgb(232,188,135)] text-[#793205] flex flex-col items-center justify-center h-screen text-xl"
+    class="bg-[rgb(232,188,135)] flex flex-col items-center justify-center h-screen text-xl"
     id="body"
   >
     <div
@@ -42,7 +42,7 @@
         src="https://ch1n.vercel.app/assets/logo--3pTYo2r.png"
         alt=""
       />
-      <h1 class="font-black text-xl" id="form-title">LOGIN</h1>
+      <h1 class="font-black text-5xl" id="form-title">LOGIN</h1>
       <form
         id="auth-form"
         class="w-full flex flex-col items-start justify-start gap-2"
@@ -159,8 +159,7 @@
 
         const userData = { username, password, age, secret, sex };
 
-        alert("User registered");
-        console.log(userData);
+        alert("User Registered!");
 
         localStorage.setItem("user", JSON.stringify(userData));
 
@@ -170,8 +169,6 @@
 
       const username = document.getElementById("username").value;
       const password = document.getElementById("password").value;
-
-      console.log("Logging in:", { username, password });
 
       const storedUser = JSON.parse(localStorage.getItem("user"));
 
